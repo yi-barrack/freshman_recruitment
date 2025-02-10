@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>FLAG 상점 - SSG 사과 농장</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>플래그 상점</h1>
+    {% if flag %}
+        <p>축하합니다! 플래그: <strong>{{ flag }}</strong></p>
+    {% else %}
+        <p>FLAG 가격은 100,000원입니다. 아래 버튼을 클릭하여 구매하세요.</p>
+        <form method="post">
+            <button type="submit">플래그 구매</button>
+        </form>
+    {% endif %}
+    <p><a href="{{ url_for('index') }}">홈으로 돌아가기</a></p>
+</body>
+</html>

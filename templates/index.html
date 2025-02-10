@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>SSG 사과 농장</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+    <h1>SSG 사과 농장에 오신 것을 환영합니다!</h1>
+    <h3>MZ들의 최고의 유행 상품인 FLAG를 구매하여 재력을 과시하세요!</h3>
+    <p>잔액: {{ balance }}원</p>
+    <p>사과 개수: {{ apples }}</p>
+    <nav>
+        <ul>
+            <li><a href="{{ url_for('buy') }}">사과 구매</a></li>
+            <li><a href="{{ url_for('sell') }}">사과 판매</a></li>
+            <li><a href="{{ url_for('shop') }}">FLAG 상점</a></li>
+        </ul>
+    </nav>
+</body>
+
+</html>
