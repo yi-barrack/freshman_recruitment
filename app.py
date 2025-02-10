@@ -79,7 +79,7 @@ def sell():
 @app.route('/shop', methods=['GET', 'POST'])
 def shop():
     if request.method == 'POST':
-        if session['balance'] >= 100000:
+        if session['balance'] >= 100000000:
             flag = "FLAG{overflow_harvest}"
             return render_template('shop.html', flag=flag)
         else:
