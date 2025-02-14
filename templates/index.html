@@ -1,56 +1,83 @@
 <!DOCTYPE html>
-<html>
+<html lang="ko">
 
 <head>
     <meta charset="UTF-8">
     <title>SSG 사과 농장</title>
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    <!-- 모바일 환경 대응 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- 외부 CSS 연결 -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 
 <body>
-    <h1>SSG 사과 농장에 오신 것을 환영합니다!</h1>
-    <h3>세종대 최고 유행 상품인 SSG FLAG를 구매하여 재력을 과시하세요!</h3>
-    <p>잔액: <strong>{{ balance }}원</strong></p>
-    <p>사과 개수: <strong>{{ apples }}</strong></p>
-    <nav>
-        <ul>
-            <li><a href="{{ url_for('buy') }}">사과 구매</a></li>
-            <li><a href="{{ url_for('sell') }}">사과 판매</a></li>
-            <li><a href="{{ url_for('shop') }}">FLAG 상점</a></li>
-            <li><a href="https://fair-atmosphere-303.notion.site/1997a1550dd380e5a40fecf623677dac?pvs=4">소스 코드</a></li>
-        </ul>
-    </nav>
-    <br>
-    <br>
-    <br>
-    <button id="hintButton" onclick="toggleVisibility('hint')" style="display:none;">힌트 보기</button>
-    <div id="hint" style="display:none;">
-        <p>힌트 = 오버플로우</p>
-        <button onclick="toggleVisibility('explanation')">해설 보기</button>
-        <div id="explanation" style="display:none;">
-            <p>해설은 최대한 정말 정말 모르겠을때 보는걸 추천해요😭</p>
-            <p>자세한 설명은 <a href="https://fair-atmosphere-303.notion.site/ssg-writeup?pvs=4">여기</a>를 클릭하세요.</p>
+    <!-- 화면 양 옆을 감싸는 래퍼: 수평 중앙 정렬 -->
+    <div class="outer-wrapper">
+        <!-- 흰 박스 컨테이너 -->
+        <div class="container">
+            <!-- 줄바꿈 없이 표시하고 싶은 텍스트들 -->
+            <h1 class="no-wrap">SSG 사과 농장에 오신 것을 환영합니다!</h1>
+            <h3 class="no-wrap">세종대 최고 유행 상품인 SSG FLAG를 구매하여 재력을 과시하세요!</h3>
+
+            <br>
+            <br>
+            <p class="info-text">잔액: <strong class="info-amount">{{ balance }}원</strong></p>
+            <p class="info-text">사과 개수: <strong class="info-amount">{{ apples }}</strong></p>
+
+            <br>
+            <br>
+            <!-- 금융 앱 느낌의 버튼 네비게이션 -->
+            <nav>
+                <ul>
+                    <li><a href="{{ url_for('buy') }}">사과 구매</a></li>
+                    <li><a href="{{ url_for('sell') }}">사과 판매</a></li>
+                    <li><a href="{{ url_for('shop') }}">FLAG 상점</a></li>
+                    <li><a href="https://fair-atmosphere-303.notion.site/1997a1550dd380e5a40fecf623677dac?pvs=4">소스
+                            코드</a></li>
+                </ul>
+            </nav>
+
+            <!-- 힌트 보기 버튼 (10회 이상 방문 시 노출) -->
+            <button id="hintButton" onclick="toggleVisibility('hint')" style="display:none;">
+                힌트 보기
+            </button>
+
+            <!-- 힌트 영역 -->
+            <div id="hint" style="display:none; margin-top:20px;">
+                <p>힌트 = 오버플로우</p>
+                <button onclick="toggleVisibility('explanation')">해설 보기</button>
+                <div id="explanation" style="display:none; margin-top:10px;">
+                    <p>해설은 최대한 정말 정말 모르겠을 때 보는걸 추천해요😭</p>
+                    <p>
+                        자세한 설명은
+                        <a href="https://fair-atmosphere-303.notion.site/ssg-writeup?pvs=4" target="_blank">여기</a>를
+                        클릭하세요.
+                    </p>
+                </div>
+            </div>
         </div>
     </div>
 
     <script>
-    function toggleVisibility(id) {
-        var element = document.getElementById(id);
-        if (element.style.display === "none") {
-            element.style.display = "block";
-        } else {
-            element.style.display = "none";
+        // 영역 보이기/숨기기
+        function toggleVisibility(id) {
+            var element = document.getElementById(id);
+            if (element.style.display === "none") {
+                element.style.display = "block";
+            } else {
+                element.style.display = "none";
+            }
         }
-    }
 
-    document.addEventListener('DOMContentLoaded', function() {
-        var visits = localStorage.getItem('visits') || 0;
-        visits++;
-        localStorage.setItem('visits', visits);
-        if (visits >= 10) {
-            document.getElementById('hintButton').style.display = 'block';
-        }
-    });
+        // 방문 횟수에 따라 힌트 버튼 표시
+        document.addEventListener('DOMContentLoaded', function () {
+            var visits = localStorage.getItem('visits') || 0;
+            visits++;
+            localStorage.setItem('visits', visits);
+            if (visits >= 10) {
+                document.getElementById('hintButton').style.display = 'inline-block';
+            }
+        });
     </script>
 </body>
 

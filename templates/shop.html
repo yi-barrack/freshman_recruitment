@@ -1,25 +1,32 @@
 <!DOCTYPE html>
-<html>
+<html lang="ko">
+
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FLAG 상점 - SSG 사과 농장</title>
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
+
 <body>
-    <h1>플래그 상점</h1>
-    {% if flag %}
-        <p>축하합니다! 1억원이나 긁어버린 당신... 재력가군요...</p>
-        <p>플래그: <strong>{{ flag }}</strong></p>
-        <br>
-        <br>
-        <h2>왜 이런 결과가 나왔을까요?</h2>
-        <a href="https://fair-atmosphere-303.notion.site/ssg-writeup?pvs=4">해설 보기</a>
-    {% else %}
-        <p>FLAG 가격은 <strong>100,000,000원</strong>입니다. 아래 버튼을 클릭하여 구매하세요!</p>
-        <form method="post">
-            <button type="submit">플래그 구매</button>
-        </form>
-        <p><a href="{{ url_for('index') }}">홈으로 돌아가기</a></p>
-    {% endif %}
+    <div class="outer-wrapper">
+        <div class="container">
+            <h1>플래그 상점</h1>
+            {% if flag %}
+            <p>축하합니다! 1억원이나 긁어버린 당신... 재력가군요...</p>
+            <p>플래그: <strong>{{ flag }}</strong></p>
+            <br><br>
+            <h2>왜 이런 결과가 나왔을까요?</h2>
+            <a href="https://fair-atmosphere-303.notion.site/ssg-writeup?pvs=4">해설 보기</a>
+            {% else %}
+            <p>FLAG 가격은 <strong>100,000,000원</strong>입니다. 아래 버튼을 클릭하여 구매하세요!</p>
+            <form method="post">
+                <button type="submit">플래그 구매</button>
+            </form>
+            <p><a href="{{ url_for('index') }}">홈으로 돌아가기</a></p>
+            {% endif %}
+        </div>
+    </div>
 </body>
+
 </html>

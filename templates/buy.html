@@ -1,17 +1,28 @@
 <!DOCTYPE html>
-<html>
+<html lang="ko">
+
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>사과 구매 - SSG 사과 농장</title>
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
+
 <body>
-    <h1>사과 구매</h1>
-    <form method="post">
-        <label for="quantity">구매할 사과의 개수를 입력하세요 (개당 100원):</label>
-        <input type="text" name="quantity" id="quantity">
-        <button type="submit">구매</button>
-    </form>
-    <p><a href="{{ url_for('index') }}">홈으로 돌아가기</a></p>
+    <!-- 화면 중앙 정렬을 위한 래퍼 -->
+    <div class="outer-wrapper">
+        <!-- 흰 박스 컨테이너 -->
+        <div class="container">
+            <h1>사과 구매</h1>
+            <form method="post">
+                <label for="quantity">구매할 사과의 개수를 입력하세요 (개당 100원):</label>
+                <!-- 숫자 입력 필드 -->
+                <input type="number" name="quantity" id="quantity">
+                <button type="submit">구매</button>
+            </form>
+            <p><a href="{{ url_for('index') }}">홈으로 돌아가기</a></p>
+        </div>
+    </div>
 </body>
+
 </html>
